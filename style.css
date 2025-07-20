@@ -1,0 +1,232 @@
+/* GLOBAL RESETS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://wallpapers.com/images/hd/ditto-face-drawing-a7jxq170ntihoo0a.jpg') center/cover fixed no-repeat #121212;
+  color: #f5f5f5;
+  overflow: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #000;
+  padding: 1rem 2rem;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+.navbar .title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #c084f5;
+  text-align: left;
+}
+
+/* LAYOUT */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1.5rem;
+  width: 95%;
+  max-width: 1920px;
+  height: calc(92% - 5rem); 
+  margin: 2rem auto;
+}
+
+.window {
+  background: rgba(30,30,30,0.95);
+  border-radius: 0.6rem;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+/* LEFT WINDOW BUTTONS */
+#leftWindow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.newsItem, .home-button {
+  display: block;
+  padding: 0.75rem 1rem;
+  background-color: rgba(163, 99, 214, 0.1);
+  border-left: 4px solid transparent;
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  transition: all 0.2s ease-in-out;
+}
+.newsItem:hover, .home-button:hover {
+  background-color: rgba(163, 99, 214, 0.25);
+  border-left: 4px solid #a363d6;
+  color: #fff;
+}
+.newsItem.active, .home-button.active {
+  background-color: rgba(163, 99, 214, 0.4);
+  border-left: 4px solid #c084f5;
+  color: #fff;
+}
+
+/* MIDDLE WINDOW TEXT */
+#middleWindow {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f0f0f0;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+#middleWindow h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #c084f5;
+}
+
+#newsContent p {
+  margin-bottom: 1rem;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+#newsContent li {
+  margin-left: 1rem;
+}
+
+#newsContent a {
+  color: #c084f5;
+}
+
+#newsContent em {
+  color: #c084f5;
+  font-style: italic;
+}
+
+#newsContent strong {
+  color: #ffffff;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RIGHT WINDOW PROGRESS BARS */
+.progress-container {
+  margin-bottom: 1rem;
+}
+.progress-bar {
+  position: relative;
+  background: #444;
+  border-radius: 1rem;
+  height: 1.4rem;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.progress-fill {
+  background: #a363d6;
+  height: 100%;
+  width: 0;
+  transition: width 1s ease-in-out;
+}
+.progress-bar .label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  pointer-events: none;
+}
+
+/* SCROLLBAR */
+.window::-webkit-scrollbar {
+  width: 8px;
+}
+.window::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+.window::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  html, body {
+    overflow: auto;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  .navbar {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .navbar .title {
+    font-size: 1.5rem;
+  }
+
+  .window {
+    height: auto;
+    max-height: none;
+    padding: 1rem;
+  }
+
+  #leftWindow, #middleWindow, #rightWindow {
+    width: 100%;
+  }
+
+  .progress-bar .label {
+    font-size: 0.65rem;
+  }
+
+  .newsItem, .home-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.9rem;
+  }
+
+  #newsContent p {
+    font-size: 0.95rem;
+  }
+
+  #middleWindow h2 {
+    font-size: 1.3rem;
+  }
+
+  .progress-bar {
+    height: 1.2rem;
+  }
+
+  .progress-bar .label {
+    font-size: 0.7rem;
+  }
+}

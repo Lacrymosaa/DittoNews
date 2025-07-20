@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DittoNews</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="DITTO.png" />
+</head>
+
+<body>
+    <div class="navbar">
+        <h1 class="title">DittoNews</h1>
+    </div>
+
+    <div class="main-container">
+        <div class="window" id="leftWindow">
+        </div>
+
+        <div class="window" id="middleWindow">
+            <h2 id="newsTitle">Welcome to DittoNews</h2>
+            <div id="newsContent">
+                <p>Placeholder
+                </p>
+            </div>
+        </div>
+
+        <div class="window" id="rightWindow">
+            <div class="progress-container">
+                <strong>Working On:</strong><br>Placeholder
+                <div class="progress-bar" data-progress="95%">
+                    <div class="progress-fill" style="width:95%;"></div>
+                    <span class="label">95%</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <strong>Placeholder (To be Revealed)</strong>
+                <div class="progress-bar" data-progress="0%">
+                    <div class="progress-fill" style="width:0;"></div>
+                    <span class="label">0%</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <strong>Currently Done (or Almost):</strong><br>Placeholder (In Review)
+                <div class="progress-bar" data-progress="99%">
+                    <div class="progress-fill" style="width:99%;"></div>
+                    <span class="label">99%</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <strong>Left To Do:</strong><br>Placeholder
+                <div class="progress-bar" data-progress="0%">
+                    <div class="progress-fill" style="width:0;"></div>
+                    <span class="label">0%</span>
+                </div>
+            </div>
+            <div>
+                <strong>Estimated Finish Date:</strong><br>None
+            </div>
+        </div>
+    </div>
+
+    <script>
+        fetch('news.json')
+            .then(res => res.json())
+            .then(data => {
+                const listEl = document.getElementById('leftWindow');
+                data.forEach(item => {
+                    const el = document.createElement('a');
+                    el.href = "#";
+                    el.className = item.id === 'home' ? 'home-button' : 'newsItem';
+                    el.textContent = item.id === 'home' ? 'Home' : item.title;
+                    el.addEventListener('click', e => {
+                        e.preventDefault();
+                        document.getElementById('newsTitle').textContent = item.title;
+                        document.getElementById('newsContent').innerHTML = item.content;
+                    });
+                    listEl.appendChild(el);
+                });
+            })
+            .catch(err => console.error('Failed to load news.json:', err));
+    </script>
+</body>
+
+</html>
